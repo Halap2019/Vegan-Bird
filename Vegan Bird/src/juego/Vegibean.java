@@ -15,6 +15,7 @@ public class Vegibean
 	private double ancho;
 	//angulo del objeto
 	private double angulo;
+	//private Alimento alimento;
 	
 	public Vegibean(double x, double y, double alto, double ancho, double angulo)
 	{
@@ -30,13 +31,17 @@ public class Vegibean
 	}
 	
 	public void desplazar() {
-		posicionX+=10;
+		posicionX+=30;
 		
 	}
-	
+	//hice el boolean de chocar pero tira warning
 	//public static boolean chocar()
 	//{
-		
+		//if (posicionX == alimento.getPosicionX() || posicionY == alimento.getPosicionY())
+		//{
+			//return true;
+		//}
+		//return false;
 	//}
 	
 	

@@ -21,7 +21,17 @@ public class Alimento
 		this.vegan=false;
 		//this.image=herramientas.cargarImagen();
 	}
+	//cree dos getters
+	public double getPosicionX() 
+	{
+		return posicionX;
+	}
 	
+	public double getPosicionY()
+	{
+		return posicionY;
+	}
+	//...
 	public void dibujarAlimento(Entorno e) 
 	{
 		e.dibujarCirculo(posicionX, posicionY, diametro, Color.BLUE);

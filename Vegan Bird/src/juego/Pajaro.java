@@ -12,13 +12,14 @@ public class Pajaro
 	private double posicionY;
 	private double diametro;
 	private Image image;
+	private Tubo tubo;
+	private boolean choco;
 	
 	public Pajaro(double x, double y, double diametro)
 	{
 		this.posicionX = x;
 		this.posicionY = y;
 		this.diametro = diametro;
-		//this.direccion = direccion;
 		this.image = Herramientas.cargarImagen("descarga.png");
 		
 	}
@@ -41,7 +42,6 @@ public class Pajaro
 	}
 	public void dibujarPajaro(Entorno e)
 	{
-		//e.dibujarCirculo(x, y, diametro, Color.ORANGE);
 		e.dibujarImagen(image, posicionX, posicionY, 0, 0.35);
 	}
 	
@@ -49,15 +49,21 @@ public class Pajaro
 	{
 		posicionY+=3;
 	}
+
 	
 	public void salta() 
 	{
 		posicionY-=10;
 	}
-	
-	public boolean chocar() {
+	// cree la funcion de chocar.... igual hay que tener ojo con este que esta incompleto
+	public boolean chocar() 
+	{
 		
+		if (posicionX == tubo.getPosicionX()|| posicionY == tubo.getPosicionY())
+		{
+			return true;
+		}
 		return false;
 	}
-	
+	//...
 }

@@ -22,7 +22,9 @@ public class Tubo
 		this.ancho = ancho;
 		this.alto = alto;
 		this.angulo = angulo;
-		this.image = Herramientas.cargarImagen("tubo Flappy Bird 2.jpg");
+		//pude poner una imagen del tuvo de super mario
+		this.image = Herramientas.cargarImagen("super mario tubo.png");
+		//...
 	}
 	
 	
@@ -35,4 +37,16 @@ public class Tubo
 	{
 		posicionX-=2;
 	}
+
+	//cree dos getters
+	public double getPosicionX() 
+	{
+		return posicionX;
+	}
+	
+	public double getPosicionY()
+	{
+		return posicionY;
+	}
+	//...
 }
