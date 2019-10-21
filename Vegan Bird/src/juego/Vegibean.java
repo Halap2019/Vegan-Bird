@@ -8,8 +8,8 @@ import entorno.Entorno;
 public class Vegibean 
 {
 	//posicion que se encuentra
-	private double posicionX;
-	private double posicionY;
+	private double posX;
+	private double posY;
 	//altura y anchura del objeto
 	private double alto;
 	private double ancho;
@@ -19,19 +19,19 @@ public class Vegibean
 	
 	public Vegibean(double x, double y, double alto, double ancho, double angulo)
 	{
-		this.posicionX=x;
-		this.posicionY=y;
+		this.posX=x;
+		this.posY=y;
 		this.alto=alto;
 		this.ancho=ancho;
 		this.angulo=angulo;
 	}
 	
-	public void dibujarRayo(Entorno e) {
-		e.dibujarRectangulo(posicionX, posicionY, ancho, alto, angulo, Color.ORANGE);
+	public void dibujar(Entorno e) {
+		e.dibujarRectangulo(posX, posY, ancho, alto, angulo, Color.ORANGE);
 	}
 	
-	public void desplazar() {
-		posicionX+=30;
+	public void mover() {
+		posX+=30;
 		
 	}
 	//hice el boolean de chocar pero tira warning

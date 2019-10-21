@@ -2,68 +2,93 @@ package juego;
 
 import java.awt.Color;
 import java.awt.Image;
-
 import entorno.Entorno;
 import entorno.Herramientas;
-
 public class Pajaro 
 {
-	private double posicionX;
-	private double posicionY;
-	private double diametro;
+	private double x;
+	private double y;
+	private double size;
 	private Image image;
-	private Tubo tubo;
-	private boolean choco;
 	
-	public Pajaro(double x, double y, double diametro)
+	public Pajaro(double x, double y, double tamano)
 	{
-		this.posicionX = x;
-		this.posicionY = y;
-		this.diametro = diametro;
+		this.x = x;
+		this.y = y;
+		this.size = tamano;
 		this.image = Herramientas.cargarImagen("descarga.png");
 		
 	}
 	public double getPosicionX() 
 	{
-		return posicionX;
+		return x;
 	}
 	public double getPosicionY()
 	{
-		return posicionY;
+		return y;
 	}
 	
 	public boolean estaFuera(Entorno e) 
 	{
-		if (posicionY<0 || posicionY>e.alto()) 
+		if (y<0 || y>e.alto()) 
 		{
 			return true;
 		}
 		return false;
 	}
-	public void dibujarPajaro(Entorno e)
+	public void dibujar(Entorno e)
 	{
-		e.dibujarImagen(image, posicionX, posicionY, 0, 0.35);
+		e.dibujarImagen(image, x, y, 0, 0.35);
 	}
 	
 	public void caer() 
 	{
-		posicionY+=3;
+		y+=3;
 	}
 
 	
-	public void salta() 
+	public void volar() 
 	{
-		posicionY-=10;
+		y-=10;
+	}
+	
+	double perfilIzquierdo()
+	{
+		return this.x-(this.size/2);
+	}
+	
+	double perfilDerecho()
+	{
+		return this.x+(this.size/2);
+	}
+	
+	double perfilSuperior()
+	{
+		return this.posicionY-(this.size/2);
+	}
+	
+	double perfilInferior()
+	{
+		return this.posicionY+(this.size/2);
 	}
 	// cree la funcion de chocar.... igual hay que tener ojo con este que esta incompleto
-	public boolean chocar() 
-	{
+	//public boolean chocar() 
+	//{
 		
-		if (posicionX == tubo.getPosicionX()|| posicionY == tubo.getPosicionY())
-		{
-			return true;
-		}
-		return false;
+	//	if (posicionX == tubo.getPosicionX()|| posicionY == tubo.getPosicionY())
+	//	{
+	//		return true;
+	//	}
+	//	return false;
+	//}
+	public boolean chocasteConUn(Tubo tubo) {
+		return (this.perfilIzquierdo() <= tubo.perfilDerecho()
+				&& this.perfilDerecho() >= tubo.perfilIzquierdo()
+				&& this.perfilInferior() >= tubo.perfilSuperior()
+				&& this.perfilSuperior() <= tubo.perfilInferior());
 	}
 	//...
+	public Vegibean disparar() {
+		return new Vegibean(x, y, 10, 10, 0);
+	}
 }
