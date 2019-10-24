@@ -20,7 +20,7 @@ import javafx.scene.paint.Color;
 
 public class Juego extends InterfaceJuego 
 {
-
+	//allahuk akbar
 	//variables y métodos propios de cada grupo
 
 	private Entorno entorno;
@@ -67,7 +67,8 @@ public class Juego extends InterfaceJuego
 		this.tubos1[3] = new Tubo(7000, 0, 100, 350,0);
 		this.tubos1[4] = new Tubo(9000, 0, 100, 200,0);
 		this.tubos1[5] = new Tubo(11000,0, 100, 500,0);
-
+		
+		//...
 
 		// aca estan creado los tubos de la parte de abajo
 
@@ -133,29 +134,26 @@ public class Juego extends InterfaceJuego
 		// y verificar la colicion con el pajaro.
 
 		
-			int cont=1;
-			while(cont<=tubos1.length) {
-
-				tubos1[cont].dibujar(entorno);
-				tubos1[cont].mover();
+			int conteo=0;
+			
+			while(conteo<=10) {
+				int acu=0;
+				while(acu <= tubos1.length-1) {
+					tubos1[acu].dibujar(entorno);
+					tubos1[acu].mover();
 				
-				tubos2[cont].dibujar(entorno);
-				tubos2[cont].mover();
-
-				if (cont==tubos1.length) {
+					tubos2[acu].dibujar(entorno);
+					tubos2[acu].mover();
+					acu ++;
 					
-					cont = 0;
+					
+				}
+				if(pajaro.chocasteConUn(tubos1[acu-1]) || pajaro.chocasteConUn(tubos2[acu-1])|| pajaro.estaFuera(entorno)) {
+
+					gameOver= true;
 
 				}
-
-				cont ++;
-
-			}
-
-
-			if(pajaro.chocasteConUn(tubos1[0]) || pajaro.chocasteConUn(tubos2[0])|| pajaro.estaFuera(entorno)) {
-
-				gameOver= true;
+				conteo ++;
 
 			}
 
