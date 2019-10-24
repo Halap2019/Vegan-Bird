@@ -134,26 +134,21 @@ public class Juego extends InterfaceJuego
 		// y verificar la colicion con el pajaro.
 
 		
-			int conteo=0;
+			int acumulador=0;
 			
-			while(conteo<=10) {
-				int acu=0;
-				while(acu <= tubos1.length-1) {
-					tubos1[acu].dibujar(entorno);
-					tubos1[acu].mover();
-				
-					tubos2[acu].dibujar(entorno);
-					tubos2[acu].mover();
-					acu ++;
+			while(acumulador <= tubos1.length-1) {
+				tubos1[acumulador].dibujar(entorno);
+				tubos1[acumulador].mover();
 					
-					
-				}
-				if(pajaro.chocasteConUn(tubos1[acu-1]) || pajaro.chocasteConUn(tubos2[acu-1])|| pajaro.estaFuera(entorno)) {
-
+				tubos2[acumulador].dibujar(entorno);
+				tubos2[acumulador].mover();
+			}
+			
+			for (int i=0; i<tubos1.length; i++) {
+				if(pajaro.chocasteConUn(tubos1[i]) || pajaro.chocasteConUn(tubos2[i])|| pajaro.estaFuera(entorno)) {
 					gameOver= true;
-
 				}
-				conteo ++;
+			}
 
 			}
 
