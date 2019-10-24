@@ -8,48 +8,58 @@ import entorno.Entorno;
 
 public class Alimento
 {
-	private int posicionX;
-	private int posicionY;
-	private double diametro;
+	private int X;
+	private int Y;
+	private double size;
 	private boolean vegan;
 	private Image image;
 	
-	public Alimento(int X, int Y , double diametro) 
+	public Alimento(int X, int Y , double tamaño) 
 	{
 		Random r= new Random();
-		this.posicionX=r.nextInt(750);
-		this.posicionY=r.nextInt(550);
-		this.diametro= diametro;
+		this.X=r.nextInt(750);
+		this.Y=r.nextInt(550);
+		this.size= tamaño;
 		//this.vegan=false;
 		//this.image=herramientas.cargarImagen();
 	}
 	//cree dos getters
 	public int getPosicionX() 
 	{
-		return posicionX;
+		return X;
 	}
 	
 	public int getPosicionY()
 	{
-		return posicionY;
+		return Y;
+	}
+	
+	public double perfilIzquierdo()
+	{
+		return this.X-(this.size/2);
+	}
+	double perfilSuperior()
+	{
+		return this.Y-(this.size/2);
+	}
+	
+	double perfilInferior()
+	{
+		return this.Y+(this.size/2);
 	}
 	//...
 	public void dibujar(Entorno e) 
 	{
-		e.dibujarCirculo(posicionX, posicionY, diametro, Color.BLUE);
+		e.dibujarCirculo(X, Y, size, Color.BLUE);
 	}
 	
 	public void mover() 
 	{
-		posicionX-=1;
+		X-=1;
 	}
 	
-	
-	
-	//public void Mutar() 
-	//{
-	//	if (vegan==false&&Vegibean.chocar()==true) {
-	//		vegan=true;
-	//	}
-	//}
+	public boolean Mutar() 
+	{
+		return vegan;
+	}
 }
