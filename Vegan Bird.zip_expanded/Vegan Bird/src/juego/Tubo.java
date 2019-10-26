@@ -63,6 +63,9 @@ public class Tubo
 	public void mover()
 	{
 		X-=2;
+		 if (this.perfilDerecho()<=0){
+	            X=1800;
+	        }
 	}
 
 	//cree dos getters

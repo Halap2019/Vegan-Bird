@@ -31,22 +31,25 @@ public class Juego extends InterfaceJuego
 
 	private Vegibean rayovegano;
 
-	private Tubo[] tubos1;
+	private Tubo[] tubosArriba;
 
-	private Tubo[] tubos2;
+	private Tubo[] tubosAbajo;
 
 	private boolean gameOver;
 
+	private Image Fondo;
 	//...
 
 	public Juego() {
 
 		
 		entorno = new Entorno(this, "Vegan Bird - grupo 11 - v1", 800, 600);
+		
+		Fondo = Herramientas.cargarImagen("flappy bird escena.png");
 
 		//inicializar lo que haga falta para el juego
 
-		pajaro = new Pajaro (entorno.ancho()/4, entorno.alto()/2,30);
+		pajaro = new Pajaro (entorno.ancho()/8, entorno.alto()/2,30);
 
 		//este otra parte es para crear alimentos
 
@@ -59,27 +62,27 @@ public class Juego extends InterfaceJuego
 		
 		//aca estan creados los tubos de la parte de arriba
  
-		this.tubos1 = new Tubo[6];
+		this.tubosArriba = new Tubo[6];
 
-		this.tubos1[0] = new Tubo(1000, 0, 100, 350,0);
-		this.tubos1[1] = new Tubo(3000, 0, 100, 500,0);
-		this.tubos1[2] = new Tubo(5000, 0, 100, 200,0);
-		this.tubos1[3] = new Tubo(7000, 0, 100, 350,0);
-		this.tubos1[4] = new Tubo(9000, 0, 100, 200,0);
-		this.tubos1[5] = new Tubo(11000,0, 100, 500,0);
+		this.tubosArriba[0] = new Tubo(entorno.ancho(), 0, 100, 350,0);
+		this.tubosArriba[1] = new Tubo(1000, 0, 100, 500,0);
+		this.tubosArriba[2] = new Tubo(1200, 0, 100, 200,0);
+		this.tubosArriba[3] = new Tubo(1400, 0, 100, 350,0);
+		this.tubosArriba[4] = new Tubo(1600, 0, 100, 400,0);
+		this.tubosArriba[5] = new Tubo(1800,0, 100, 300,0);
 		
 		//...
 
 		// aca estan creado los tubos de la parte de abajo
 
-		this.tubos2 = new Tubo[6];
+		this.tubosAbajo = new Tubo[6];
 
-		this.tubos2[0] = new Tubo(1000, entorno.alto(), 100, 350,0);
-		this.tubos2[1] = new Tubo(3000, entorno.alto(), 100, 500,0);
-		this.tubos2[2] = new Tubo(5000, entorno.alto(), 100, 200,0);
-		this.tubos2[3] = new Tubo(7000, entorno.alto(), 100, 350,0);
-		this.tubos2[4] = new Tubo(9000, entorno.alto(), 100, 200,0);
-		this.tubos2[5] = new Tubo(11000, entorno.alto(), 100, 500,0);
+		this.tubosAbajo[0] = new Tubo(entorno.ancho(), entorno.alto(), 100, 350,0);
+		this.tubosAbajo[1] = new Tubo(1000, entorno.alto(), 100, 300,0);
+		this.tubosAbajo[2] = new Tubo(1200, entorno.alto(), 100, 400,0);
+		this.tubosAbajo[3] = new Tubo(1400, entorno.alto(), 100, 300,0);
+		this.tubosAbajo[4] = new Tubo(1600, entorno.alto(), 100, 200,0);
+		this.tubosAbajo[5] = new Tubo(1800, entorno.alto(), 100, 500,0);
 
 		//...	
 
@@ -108,88 +111,61 @@ public class Juego extends InterfaceJuego
 			pajaro.dibujar(entorno);
 			pajaro.caer();
 
-
 			alimento.dibujar (entorno);
 			alimento.mover();
-
 		
-			tubos1[0].dibujar(entorno);
-			tubos1[0].mover();
-
+			tubosArriba[0].dibujar(entorno);
+			tubosArriba[0].mover();
 		
-			tubos2[0].dibujar(entorno);
-			tubos2[0].mover();
-
+			tubosAbajo[0].dibujar(entorno);
+			tubosAbajo[0].mover();
 
 			if (rayovegano != null) {
-
 			rayovegano.dibujar(entorno);
 			rayovegano.mover();
-
 			}
 
-
-		//se hace un foreach del ArrayList de tubos para dibujarlos, desplazarlos, reposicionarlos al final de la pantalla
-
-		// y verificar la colicion con el pajaro.
-
-		
+			
 			int acumulador=0;
+
+			while(acumulador <= tubosArriba.length-1) {
+				tubosArriba[acumulador].dibujar(entorno);
+				tubosArriba[acumulador].mover();
+				
+				tubosAbajo[acumulador].dibujar(entorno);
+				tubosAbajo[acumulador].mover();
 			
-			while(acumulador <= tubos1.length-1) {
-				tubos1[acumulador].dibujar(entorno);
-				tubos1[acumulador].mover();
-					
-				tubos2[acumulador].dibujar(entorno);
-				tubos2[acumulador].mover();
+				acumulador ++;
+			
+				
 			}
 			
-			for (int i=0; i<tubos1.length; i++) {
-				if(pajaro.chocasteConUn(tubos1[i]) || pajaro.chocasteConUn(tubos2[i])|| pajaro.estaFuera(entorno)) {
+
+			for (int i=0; i<tubosArriba.length; i++) {
+				if(pajaro.chocasteConUn(tubosArriba[i]) || pajaro.chocasteConUn(tubosAbajo[i])|| pajaro.estaFuera(entorno)) {
 					gameOver= true;
 				}
 			}
 
-			}
-
-			/*if (i<=6){
-
-				i=0;
-
-			}
-
-		}*/
-
-		//procesamiento de un instante de tiempo
-
 			if (entorno.estaPresionada(entorno.TECLA_ARRIBA)) {
-
 				pajaro.volar();
-
 			}
 
 			if (entorno.estaPresionada(entorno.TECLA_ESPACIO)) {
-
 				rayovegano = pajaro.disparar();
-
 			}
 
 		}
 
 		if(gameOver) {
-
-		entorno.cambiarFont("System", 100, java.awt.Color.RED);
-		entorno.escribirTexto("Has Perdido!", 110, 200);
-
+			entorno.cambiarFont("System", 100, java.awt.Color.RED);
+			entorno.escribirTexto("Has Perdido!", 110, 200);
 		}
 
 }
-	
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args){
-
 		Juego juego = new Juego();
-	
 	}
 }
