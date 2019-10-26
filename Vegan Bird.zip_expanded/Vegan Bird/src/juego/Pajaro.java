@@ -78,8 +78,20 @@ public class Pajaro
 				&& this.perfilInferior() >= tubo.perfilSuperior()
 				&& this.perfilSuperior() <= tubo.perfilInferior());
 	}
+	
+	public boolean chocasteConUn(Alimento alimento) {
+		return (this.perfilIzquierdo() <= alimento.perfilDerecho()
+				&& this.perfilDerecho() >= alimento.perfilIzquierdo()
+				&& this.perfilInferior() >= alimento.perfilSuperior()
+				&& this.perfilSuperior() <= alimento.perfilInferior());
+	}
 	//...
 	public Vegibean disparar() {
 		return new Vegibean(x, y, 10, 10, 0);
 	}
+	/*public double puntaje() {
+		// TODO Auto-generated method stub
+		return 0;
+	}*/
+
 }

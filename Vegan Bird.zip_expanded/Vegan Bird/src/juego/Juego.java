@@ -115,9 +115,6 @@ public class Juego extends InterfaceJuego
 			pajaro.dibujar(entorno);
 			pajaro.caer();
 
-			alimento[0].dibujar (entorno);
-			alimento[0].mover();
-
 			if (rayovegano != null) {
 				rayovegano.dibujar(entorno);
 				rayovegano.mover();
@@ -148,8 +145,15 @@ public class Juego extends InterfaceJuego
 			while (elemento <= alimento.length-1) {
 				alimento[elemento].dibujar(entorno);
 				alimento[elemento].mover();
+			
+				int puntaje=0;
+				if (pajaro.perfilDerecho()==alimento[elemento].perfilIzquierdo()) {
+					puntaje++;
+					alimento[elemento]=null;
+				}
 				elemento++;
 			}
+			
 			
 			//...
 
@@ -174,4 +178,4 @@ public class Juego extends InterfaceJuego
 	public static void main(String[] args){
 		Juego juego = new Juego();
 	}
-}}
+}
