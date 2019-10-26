@@ -71,16 +71,7 @@ public class Pajaro
 	{
 		return this.y+(this.size/2);
 	}
-	// cree la funcion de chocar.... igual hay que tener ojo con este que esta incompleto
-	//public boolean chocar() 
-	//{
-		
-	//	if (posicionX == tubo.getPosicionX()|| posicionY == tubo.getPosicionY())
-	//	{
-	//		return true;
-	//	}
-	//	return false;
-	//}
+	
 	public boolean chocasteConUn(Tubo tubo) {
 		return (this.perfilIzquierdo() <= tubo.perfilDerecho()
 				&& this.perfilDerecho() >= tubo.perfilIzquierdo()

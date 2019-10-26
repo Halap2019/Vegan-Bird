@@ -17,21 +17,11 @@ public class Alimento
 	public Alimento(int X, int Y , double tamaño) 
 	{
 		Random r= new Random();
-		this.X=r.nextInt(750);
-		this.Y=r.nextInt(550);
+		this.X=r.nextInt(800);
+		this.Y=r.nextInt(600);
 		this.size= tamaño;
 		//this.vegan=false;
 		//this.image=herramientas.cargarImagen();
-	}
-	//cree dos getters
-	public int getPosicionX() 
-	{
-		return X;
-	}
-	
-	public int getPosicionY()
-	{
-		return Y;
 	}
 	
 	public double perfilIzquierdo()
@@ -58,8 +48,10 @@ public class Alimento
 		X-=1;
 	}
 	
-	public boolean Mutar() 
+	
+	/*public boolean Mutar() 
 	{
+		if 
 		return vegan;
-	}
+	}*/
 }

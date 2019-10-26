@@ -50,35 +50,14 @@ public class Tubo
 	double perfilInferior() {
 		return this.Y + (this.alto / 2);
 	}
-	
-	public double getAncho() {
-		return ancho;
-	}
-
-
-	public double getAlto() {
-		return alto;
-	}
 
 	public void mover()
 	{
 		X-=2;
 		 if (this.perfilDerecho()<=0){
-	            X=1800;
+	            X=2500;
 	        }
 	}
-
-	//cree dos getters
-	public double getX() 
-	{
-		return X;
-	}
-	
-	public double getY()
-	{
-		return Y;
-	}
-	//...
 	
 	
 }
